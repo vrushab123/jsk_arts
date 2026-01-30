@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSK_N_CRAFTS | Product Details</title>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Model Viewer for AR -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+
+    <style>
+        /* Specific Styles for Product Page */
+        body {
+            overflow: auto;
+            /* Enable scrolling */
+        }
+
+        .product-page-container {
+            padding: 8rem 4rem;
+            display: flex;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 100vh;
+            align-items: center;
+        }
+
+        .product-3d-view {
+            flex: 1.5;
+            height: 600px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            background-color: #111;
+            --poster-color: transparent;
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .breadcrumb {
+            color: #888;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .breadcrumb a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .product-title {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            background: linear-gradient(to right, #fff, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            color: var(--accent-gold);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .product-description {
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .ar-button {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-bottom: 1rem;
+        }
+
+        .ar-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Custom AR Button Styling within model-viewer */
+        #ar-button {
+            background-image: url(https://modelviewer.dev/shared-assets/icons/ic_view_in_ar_new_googblue.png);
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            background-position: 12px 50%;
+            background-color: #fff;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            bottom: 132px;
+            padding: 0px 16px 0px 40px;
+            font-family: Roboto, Regular, Helvetica Neue, sans-serif;
+            font-size: 14px;
+            color: #4285f4;
+            height: 36px;
+            line-height: 36px;
+            border-radius: 18px;
+            border: 1px solid #DADCE0;
+        }
+
+        @media (max-width: 900px) {
+            .product-page-container {
+                flex-direction: column;
+                padding: 6rem 1.5rem;
+            }
+
+            .product-3d-view {
+                width: 100%;
+                height: 400px;
+            }
+
+            .product-title {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Back to Home -->
+    <nav style="position: absolute;">
+        <div class="logo">JSK_N_CRAFTS</div>
+        <div class="nav-links">
+            <a href="index.html">Back to Gallery</a>
+        </div>
+    </nav>
+
+    <div class="product-page-container">
+        <!-- 3D AR Viewer -->
+        <div class="product-3d-view">
+            <!-- 
+                Using a sample placeholder model because specific marble scans are not available yet. 
+                Replace 'src' with your own .glb file path.
+            -->
+            <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                ios-src="https://modelviewer.dev/shared-assets/models/Astronaut.usdz"
+                alt="A 3D model of a marble artifact" ar ar-modes="webxr scene-viewer quick-look" camera-controls
+                tone-mapping="neutral" poster="assets/images/marble_vase.png" shadow-intensity="1">
+
+                <button slot="ar-button" id="ar-button">
+                    View in your space
+                </button>
+
+                <div id="ar-prompt">
+                    <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
+                </div>
+            </model-viewer>
+        </div>
+
+        <!-- Product Details -->
+        <div class="product-details">
+            <div class="breadcrumb">
+                <a href="index.html">Collection</a> / <span id="p-name">Imperial Vase</span>
+            </div>
+
+            <h1 class="product-title" id="p-title">Imperial Vase</h1>
+            <div class="product-price" id="p-price">$2,500</div>
+
+            <p class="product-description">
+                This exquisite piece is hand-carved from the finest Carrara marble.
+                Its intricate details and smooth finish reflect the mastery of our artisans.
+                Perfect for adding a touch of classical elegance to any modern interior.
+            </p>
+
+            <div class="cta-group">
+                <button class="btn btn-primary" onclick="alert('Added to Enquiry List')">Enquire Now</button>
+            </div>
+
+            <p style="margin-top: 2rem; font-size: 0.8rem; color: #666;">
+                * Click the "View in your space" button on the 3D viewer (mobile only) to see this item in your room via
+                AR.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Simple script to populate details from URL params (if we had them)
+        // For now, it defaults to the static content above or can be dynamic
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        const price = urlParams.get('price');
+
+        if (name) {
+            document.getElementById('p-title').textContent = name;
+            document.getElementById('p-name').textContent = name;
+            document.title = `JSK_N_CRAFTS | ${name}`;
+        }
+        if (price) {
+            document.getElementById('p-price').textContent = price;
+        }
+    </script>
+</body>
+
+</html>
