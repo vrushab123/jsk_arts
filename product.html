@@ -180,16 +180,41 @@
         @media (max-width: 900px) {
             .product-page-container {
                 flex-direction: column;
-                padding: 6rem 1.5rem;
+                padding: 5rem 1rem 2rem;
+                gap: 2rem;
             }
 
             .product-3d-view {
                 width: 100%;
-                height: 400px;
+                height: 350px;
+                min-height: 300px;
+            }
+
+            .product-3d-view model-viewer {
+                width: 100%;
+                height: 100%;
+            }
+
+            .fallback-image {
+                width: 100%;
+                height: 100%;
+            }
+
+            .fallback-image img {
+                max-width: 85%;
+                max-height: 85%;
             }
 
             .product-title {
-                font-size: 3rem;
+                font-size: 2rem;
+            }
+
+            .product-price {
+                font-size: 1.5rem;
+            }
+
+            .product-details {
+                padding: 1rem 0;
             }
         }
     </style>
@@ -206,7 +231,15 @@
             <a href="about.html">About Us</a>
             <a href="testimonials.html">Testimonials</a>
         </div>
+        <div class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay"></div>
 
     <div class="product-page-container">
         <!-- 3D AR Viewer -->
@@ -259,6 +292,34 @@
     </div>
 
     <script>
+        // Mobile Hamburger Menu
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const mobileOverlay = document.querySelector('.mobile-overlay');
+
+        if (navToggle && navLinks && mobileOverlay) {
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                mobileOverlay.classList.toggle('active');
+            });
+
+            mobileOverlay.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+            });
+
+            const navLinksItems = navLinks.querySelectorAll('a');
+            navLinksItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    navToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    mobileOverlay.classList.remove('active');
+                });
+            });
+        }
+
         // Populate product details from URL params
         const urlParams = new URLSearchParams(window.location.search);
         const name = urlParams.get('name');

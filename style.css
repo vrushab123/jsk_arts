@@ -617,7 +617,8 @@ h2 {
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 1002;
+    padding: 5px;
 }
 
 .nav-toggle span {
@@ -651,22 +652,23 @@ h2 {
     }
 
     .nav-links {
+        display: flex;
         position: fixed;
         top: 0;
         right: -100%;
         width: 70%;
         max-width: 300px;
         height: 100vh;
-        background: linear-gradient(135deg, rgba(10, 10, 10, 0.98), rgba(26, 26, 26, 0.98));
-        backdrop-filter: blur(20px);
+        background: #0a0a0a;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 2rem;
-        transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        border-left: 1px solid rgba(212, 175, 55, 0.3);
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
-        z-index: 1000;
+        gap: 1.5rem;
+        transition: right 0.3s ease;
+        border-left: 2px solid rgba(212, 175, 55, 0.5);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+        z-index: 1001;
+        padding: 2rem 1rem;
     }
 
     .nav-links.active {
@@ -674,25 +676,26 @@ h2 {
     }
 
     .nav-links a {
+        display: block;
         margin: 0;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         padding: 1rem 2rem;
-        width: 80%;
+        width: 90%;
         text-align: center;
-        border: 1px solid rgba(212, 175, 55, 0.2);
+        border: 1px solid rgba(212, 175, 55, 0.3);
         border-radius: 10px;
-        background: rgba(255, 255, 255, 0.03);
-        transition: all 0.3s ease;
+        background: rgba(212, 175, 55, 0.05);
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+        pointer-events: auto;
     }
 
-    .nav-links a:hover {
-        background: rgba(212, 175, 55, 0.1);
-        border-color: rgba(212, 175, 55, 0.5);
-        transform: translateX(-5px);
-    }
-
-    .nav-links a::after {
-        display: none;
+    .nav-links a:hover,
+    .nav-links a:active {
+        background: rgba(212, 175, 55, 0.2);
+        border-color: rgba(212, 175, 55, 0.8);
+        color: #d4af37;
     }
 
     /* Mobile Menu Overlay */
@@ -702,12 +705,11 @@ h2 {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(5px);
+        background: rgba(0, 0, 0, 0.8);
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
-        z-index: 999;
+        z-index: 998;
     }
 
     .mobile-overlay.active {
